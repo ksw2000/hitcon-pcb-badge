@@ -11,6 +11,7 @@
 #include <App/SnakeApp.h>
 #include <Hitcon.h>
 #include <Logic/BadgeController.h>
+#include <Logic/BaseStnHub.h>
 #include <Logic/ButtonLogic.h>
 #include <Logic/DisplayLogic.h>
 #include <Logic/EntropyHub.h>
