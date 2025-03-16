@@ -18,7 +18,6 @@
 #include <Logic/IrController.h>
 #include <Logic/IrLogic.h>
 #include <Logic/NvStorage.h>
-#include <Logic/UsbLogic.h>
 #include <Logic/XBoardLogic.h>
 #include <Service/ButtonService.h>
 #include <Service/DisplayService.h>
@@ -73,7 +72,6 @@ void hitcon_run() {
   hitcon::ir::irController.Init();
   hitcon::app::snake::snake_app.Init();
   hitcon::app::dino::dino_app.Init();
-  hitcon::usb::g_usb_logic.Init();
 
   // run hardware test mode if MODE/SETTINGS Button is pressed during
   // initializing
