@@ -635,8 +635,6 @@ def charToHex(char):
         return [0xFE, ScanCode.KEY_MOD_LSHIFT, ScanCode.KEY_BACKSLASH, 0x00]
     elif char == "#":
         return [ScanCode.KEY_HASHTILDE]
-    elif char == "~":
-        return [0xFE, ScanCode.KEY_MOD_LSHIFT, ScanCode.KEY_HASHTILDE, 0x00]
     elif char == ";":
         return [ScanCode.KEY_SEMICOLON]
     elif char == ":":

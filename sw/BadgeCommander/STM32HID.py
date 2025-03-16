@@ -76,10 +76,13 @@ def send_badusb_script(script):
     checksum = list(crc.calculate(_script).to_bytes(4, 'little'))
     datatosend = datatosend+checksum+ script
     for i in range(0, math.ceil(len(datatosend)), 8):
-        print(datatosend[i: i+8])
+        
+        if len(datatosend[i: i+8]) != 8:
+            datatosend[i: i+8] = datatosend[i: i+8] + [0]*(8-len(datatosend[i: i+8]))
         if datatosend[i] == 0:
             datatosend[i] = 0xFC
             print(datatosend[i: i+8])
+        print(datatosend[i: i+8])
         send_command(datatosend[i: i+8])
         if len(datatosend) - 8 != i:
             device.read(8) # wait for response

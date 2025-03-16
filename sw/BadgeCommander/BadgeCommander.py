@@ -46,7 +46,7 @@ def getZoomValue():
             zoomValue = float(LinuxScale.get_scaling_factor())
         except:
             print('Error getting the zoom value of the system')
-            zoomValue = int(input('Please input the zoom value of your system: '))
+            zoomValue = float(input('Please input the zoom value of your system: '))
     else:
         zoomValue = 1
     return zoomValue
