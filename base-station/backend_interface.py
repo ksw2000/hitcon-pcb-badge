@@ -8,8 +8,9 @@ class BackendInterface:
         self.station_id = config.get(key="station_id")
         self.config = config
 
-    async def send_received_packed(data: bytes, packet_id: uuid.UUID):
+    async def send_received_packed(data: bytes, packet_id: uuid.UUID) -> bool:
         # Call to send a packet received by IR interface to the backend.
+        # Return True for success.
         pass
 
     async def get_next_tx_packet() -> Tuple[bytes, uuid.UUID]:

@@ -10,6 +10,7 @@ async def main():
     backend = BackendInterface(config=config)
     ir = IrInterface()
     processor = PacketProcessor(backend=backend, ir=ir)
+    processor.start()
 
 
 if __name__ == "__main__":
