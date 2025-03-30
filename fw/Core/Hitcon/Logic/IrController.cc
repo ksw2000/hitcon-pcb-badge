@@ -3,6 +3,7 @@
 #include <App/HardwareTestApp.h>
 #include <App/ShowNameApp.h>
 #include <Logic/BadgeController.h>
+#include <Logic/BaseStnHub.h>
 #include <Logic/Display/display.h>
 #include <Logic/IrController.h>
 #include <Logic/RandomPool.h>
@@ -56,12 +57,22 @@ void IrController::OnPacketReceived(void* arg) {
   IrData* data = reinterpret_cast<IrData*>(&packet->data_[1]);
 
   // Game
-  if (data->type == packet_type::kGame) {
-    // removed
-  } else if (data->type == packet_type::kTest) {
-    hardware_test_app.CheckIr(&data->show);
-  } else if (data->type == packet_type::kShow) {
-    scheduler.Queue(&showtext_task, &data->show);
+  switch (data->type) {
+    case packet_type::kGame:
+      // removed
+      break;
+    case packet_type::kTest:
+      hardware_test_app.CheckIr(&data->show);
+      break;
+    case packet_type::kShow:
+      scheduler.Queue(&showtext_task, &data->show);
+      break;
+    // I am not sure what type to send to the base station.
+    // size and data are not sure neither. Maybe fixme later.
+    case packet_type::kAcknowledge:
+      hitcon::basestn::g_basestn_hub.OnIrPacketRecv(
+          reinterpret_cast<uint8_t*>(data), packet->size_);
+      break;
   }
 }
 
