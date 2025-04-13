@@ -13,6 +13,7 @@
 #include <Logic/BadgeController.h>
 #include <Logic/BaseStnHub.h>
 #include <Logic/ButtonLogic.h>
+#include <Logic/CdcLogic.h>
 #include <Logic/DisplayLogic.h>
 #include <Logic/EntropyHub.h>
 #include <Logic/GameScore.h>
@@ -73,6 +74,7 @@ void hitcon_run() {
   hitcon::ir::irController.Init();
   hitcon::app::snake::snake_app.Init();
   hitcon::app::dino::dino_app.Init();
+  hitcon::logic::cdc::g_cdc_logic.Init();
 
   // run hardware test mode if MODE/SETTINGS Button is pressed during
   // initializing
