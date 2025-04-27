@@ -1,0 +1,34 @@
+.container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.row-head {
+    background-color: #fff!important;
+    color: #505050;
+    font-weight: bold;
+}
+
+.row:nth-child(2n) {
+    background-color: #323232;
+}
+
+.row>div:nth-child(1) {
+    width: 50px;
+}
+
+.row>div:nth-child(2) {
+    flex: 1;
+}
+
+.row>div:nth-child(3) {
+    width: 80px;
+    text-align: right;
+}
