@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Leaderboard</h1>
+    <div class="row-head row">
+        <div>Rank</div>
+        <div>Name</div>
+        <div>Score</div>
+    </div>
+    @for (item of items; track $index ;let rank = $index) {
+    <div class="row">
+        <div>{{rank+1}}</div>
+        <div>{{item.name}}</div>
+        <div>{{item.score | number}}</div>
+    </div>
+    }
+</div>
