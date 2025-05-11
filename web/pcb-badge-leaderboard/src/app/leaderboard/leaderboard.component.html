@@ -1,5 +1,13 @@
 <div class="container">
     <h1>Leaderboard</h1>
+    <div class="bar-label">
+        <div class="bar-label-team1">{{ team1Score | number }}</div>
+        <div class="bar-label-team2">{{ team2Score | number }}</div>
+    </div>
+    <div class="bar">
+        <div class="block bar-team1" #team1Block></div>
+        <div class="block bar-team2" #team2Block></div>
+    </div>
     <div class="row-head row">
         <div>Rank</div>
         <div>Name</div>
