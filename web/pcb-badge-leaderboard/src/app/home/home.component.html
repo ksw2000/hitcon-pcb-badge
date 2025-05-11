@@ -1,1 +1,5 @@
-<p>Home page</p>
+<img alt="2f, 3f" [src]="floorImg[floor]"/>
+<div class="fab">
+    <div (click)="changeFloor(1)" [ngClass]="{'select': floor == 1}">4F</div>
+    <div (click)="changeFloor(0)" [ngClass]="{'select': floor == 0}">2-3F</div>
+</div>

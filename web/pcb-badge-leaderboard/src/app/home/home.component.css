@@ -1,0 +1,48 @@
+.fab {
+    position: fixed;
+    width: 35px;
+    padding: 5px;
+    height: 75px;
+    background-color: #fff;
+    border-radius: 30px;
+    z-index: 10;
+    bottom: 20px;
+    right: calc(50% - 580px);
+    color: #505050;
+    display: flex;
+    flex-direction: column;
+    font-size: .75rem;
+}
+
+.fab>div {
+    width: 35px;
+    margin: 0 auto 5px;
+    text-align: center;
+    line-height: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 200ms ease-in;
+}
+
+.fab div:last-child {
+    margin: 0 auto;
+}
+
+.fab div:hover {
+    background-color: #c2e3ff;
+}
+
+.fab div.select {
+    background-color: #83c7ff;
+}
+
+@media (max-width: 1200px) {
+    .fab {
+        right: 20px;
+    }
+}
+
+img {
+    width: 100%;
+}
