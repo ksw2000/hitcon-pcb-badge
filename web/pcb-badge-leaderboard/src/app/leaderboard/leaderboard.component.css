@@ -8,6 +8,15 @@
     display: flex;
     padding: 10px;
     border-radius: 15px;
+    align-items: center;
+}
+
+.row.team1 {
+    color: red;
+}
+
+.row.team0 {
+    color: blue;
 }
 
 .row-head {
@@ -43,11 +52,11 @@
     padding: 10px;
 }
 
-.bar-label-team1 {
+.bar-label-team0 {
     width: 50%;
 }
 
-.bar-label-team2 {
+.bar-label-team1 {
     width: 50%;
     text-align: right;
 }
@@ -64,13 +73,13 @@
     height: 100%;
 }
 
-.bar-team1 {
+.bar-team0 {
     background-color: red;
     width: 50%;
     border-radius: 3px 0px 0px 3px;
 }
 
-.bar-team2 {
+.bar-team1 {
     background-color: blue;
     width: 50%;
     border-radius: 0px 3px 3px 0px;
