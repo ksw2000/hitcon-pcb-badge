@@ -6,9 +6,10 @@ mat-toolbar {
 }
 
 .mat-toolbar {
-    background-color:darkblue;
+    background-color: darkblue;
     color: #fff;
-    border-bottom: 3px solid green; /* debug*/
+    border-bottom: 3px solid green;
+    /* debug*/
 }
 
 .mat-toolbar button {
@@ -25,17 +26,18 @@ mat-toolbar {
 }
 
 main {
-    max-width: 1200px;
-    width: 100%;
     margin: 64px auto 0px;
     border: 4px solid blue;
     box-sizing: border-box;
     padding: 5px;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 @media (max-width: 599px) {
     main {
         margin: 54px auto 0px;
+        height: 100%;
     }
 }
 

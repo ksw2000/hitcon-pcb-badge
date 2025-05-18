@@ -43,6 +43,32 @@
     }
 }
 
-img {
+#map-wrapper {
+    height: 100%;
     width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+
+#map-scale-layer {
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#map-scale-layer img {
+    height: 100%;
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.point {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: red;
 }
