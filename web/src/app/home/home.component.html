@@ -1,4 +1,4 @@
-<div #mapWrapper id="map-wrapper" class="disable-select">
+<div #mapWrapper (scroll)="onMapWrapperScroll($event)" id="map-wrapper" class="disable-select">
     <div #mapScaler id="map-scale-layer">
         <img alt="2f, 3f" [src]="floorImg[floor]" />
         <div class="point" style="top: calc(78.3% - 3px); left: calc(29% - 3px);"></div>
@@ -10,6 +10,6 @@
 </div>
 
 <div id="zoom-button" class="fab disable-select">
-    <div (click)="zoom(true)">+</div>
-    <div (click)="zoom(false)">-</div>
+    <div (click)="zoom(10)">+</div>
+    <div (click)="zoom(-10)">–</div>
 </div>
