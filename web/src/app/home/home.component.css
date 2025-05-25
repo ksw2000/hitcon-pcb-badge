@@ -1,11 +1,11 @@
 #floor-button {
     bottom: 20px;
-    right: calc(50% - 580px);
+    right: 40px;
 }
 
 #zoom-button {
     bottom: 20px;
-    left: calc(50% - 580px);
+    left: 40px;
 }
 
 .fab {
@@ -46,7 +46,7 @@
 }
 
 #zoom-button {
-    font-size: .9rem;
+    font-size: 1rem;
 }
 
 @media (max-width: 1200px) {
