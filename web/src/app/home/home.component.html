@@ -1,7 +1,19 @@
 <div #mapWrapper (scroll)="onMapWrapperScroll($event)" id="map-wrapper" class="disable-select">
     <div #mapScaler id="map-scale-layer">
         <img alt="2f, 3f" [src]="floorImg[floor]" />
-        <div class="point" style="top: calc(78.3% - 3px); left: calc(29% - 3px);"></div>
+        @for (point of points[floor]; track point.x){
+        <div class="point" [style.top]="positionToUIString(point.x)" [style.left]="positionToUIString(point.y)"></div>
+        <div class="point-box" [style.top]="positionToUIString(point.x)" [style.left]="positionToUIString(point.y)">
+            <div class="bar">
+                <div class="team0" [style.width.px]="scoreToUIWidth(point.score[0])"></div>
+                <div class="score">{{point.score[0]}}</div>
+            </div>
+            <div class="bar">
+                <div class="team1" [style.width.px]="scoreToUIWidth(point.score[1])"></div>
+                <div class="score">{{ point.score[1] }}</div>
+            </div>
+        </div>
+        }
     </div>
 </div>
 <div id="floor-button" class="fab  disable-select">
