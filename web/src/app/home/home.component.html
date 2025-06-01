@@ -6,11 +6,11 @@
         <div class="point-box" [style.top]="positionToUIString(point.x)" [style.left]="positionToUIString(point.y)">
             <div class="bar">
                 <div class="team0" [style.width.px]="scoreToUIWidth(point.score[0])"></div>
-                <div class="score">{{point.score[0]}}</div>
+                <div class="score score0">{{point.score[0]}}</div>
             </div>
             <div class="bar">
                 <div class="team1" [style.width.px]="scoreToUIWidth(point.score[1])"></div>
-                <div class="score">{{ point.score[1] }}</div>
+                <div class="score score1">{{ point.score[1] }}</div>
             </div>
         </div>
         }
