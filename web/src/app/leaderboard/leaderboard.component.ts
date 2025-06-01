@@ -8,25 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './leaderboard.component.css'
 })
 export class LeaderboardComponent {
-  team0Score: number = 2000
-  team1Score: number = 8000
-  items: leaderboard[] = []
+  team0Score = 2000;
+  team1Score = 8000;
+  items: leaderboard[] = [];
   constructor() {
     for (let i = 0; i < 20; i++) {
       this.items.push({
         name: "name name name name",
         score: (1000 - i) * 10,
         teamID: Math.floor(Math.random() * 2),
-      })
+      });
     }
   }
 
   team0Percent(): number {
-    return (this.team0Score / (this.team0Score + this.team1Score)) * 100
+    return (this.team0Score / (this.team0Score + this.team1Score)) * 100;
   }
 
   team1Percent(): number {
-    return (1 - this.team0Score / (this.team0Score + this.team1Score)) * 100
+    return (1 - this.team0Score / (this.team0Score + this.team1Score)) * 100;
   }
 }
 
