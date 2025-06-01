@@ -87,6 +87,7 @@
     height: 6px;
     border-radius: 50%;
     background-color: red;
+    transform: translate(-3px, -3px);
 }
 
 .disable-select {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StateService } from '../state.service';
 
@@ -8,7 +8,7 @@ import { StateService } from '../state.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit, OnInit {
   @ViewChild('mapWrapper') mapWrapper?: ElementRef;
 
   readonly scalerMax = 299;
@@ -24,7 +24,7 @@ export class HomeComponent {
       y: 29,
       score: [100, 60]
     }
-  ]
+  ];
 
   points1: point[] = [
     {
@@ -32,7 +32,7 @@ export class HomeComponent {
       y: 50,
       score: [120, 50]
     }
-  ]
+  ];
 
   points = [this.points0, this.points1];
 
@@ -79,13 +79,9 @@ export class HomeComponent {
     }
   }
 
-  positionToUIString(pos: number): string {
-    return `calc(${pos}% - 3px)`;
-  }
-
   // convert score to width on UI
   scoreToUIWidth(score: number): number {
-    return score
+    return score;
   }
 }
 
