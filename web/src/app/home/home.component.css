@@ -90,3 +90,43 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.point-box {
+    position: absolute;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px 0px 10px;
+}
+
+.point-box div {
+    height: 10px;
+}
+
+.bar {
+    width: 100%;
+    margin: 0px 0px 5px;
+    display: flex;
+    align-items: center;
+}
+
+.team0 {
+    background-color: red;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.team1 {
+    background-color: blue;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.bar .score {
+    color: red;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1rem;
+    height: auto;
+    padding: 0px 0px 0px 4px;
+}

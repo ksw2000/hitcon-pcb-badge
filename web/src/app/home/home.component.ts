@@ -18,6 +18,25 @@ export class HomeComponent {
   scaler = 99;
   readonly floorImg: string[] = ['./2f3f.svg', './4f.svg'];
 
+  // TODO: the data of points should be fetched from server periodically
+  points0: point[] = [
+    {
+      x: 78.3,
+      y: 29,
+      score: [100, 60]
+    }
+  ]
+
+  points1: point[] = [
+    {
+      x: 78.3,
+      y: 29,
+      score: [100, 60]
+    }
+  ]
+
+  points = [this.points0, this.points1];
+
   constructor(public state: StateService) { }
 
   ngAfterViewInit(): void {
@@ -69,4 +88,19 @@ export class HomeComponent {
       this.state.scrollTop = target.scrollTop;
     }
   }
+
+  positionToUIString(pos: number): string {
+    return `calc(${pos}% - 3px)`;
+  }
+
+  // convert score to width on UI
+  scoreToUIWidth(score: number): number {
+    return score
+  }
+}
+
+interface point {
+  score: number[] // for each team score
+  x: number // x-axis of position
+  y: number // y-axis of position
 }
