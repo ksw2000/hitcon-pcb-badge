@@ -29,9 +29,9 @@ export class HomeComponent {
 
   points1: point[] = [
     {
-      x: 78.3,
-      y: 29,
-      score: [100, 60]
+      x: 85,
+      y: 50,
+      score: [120, 50]
     }
   ]
 
