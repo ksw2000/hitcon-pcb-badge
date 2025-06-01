@@ -10,7 +10,6 @@ import { StateService } from '../state.service';
 })
 export class HomeComponent {
   @ViewChild('mapWrapper') mapWrapper?: ElementRef;
-  @ViewChild('mapScaler') mapScaler?: ElementRef;
 
   readonly scalerMax = 299;
   readonly scalerMin = 79;
@@ -40,8 +39,6 @@ export class HomeComponent {
   constructor(public state: StateService) { }
 
   ngAfterViewInit(): void {
-    this.zoom(0);
-    console.log("ngAfterViewInit()", this.state.scrollLeft, this.state.scrollTop);
     this.moveWrapper(this.state.scrollLeft, this.state.scrollTop);
   }
 
@@ -56,15 +53,8 @@ export class HomeComponent {
   }
 
   zoom(delta: number) {
-    if (!this.mapScaler) {
-      return;
-    }
-
-    this.scaler = Math.min(this.scaler + delta, this.scalerMax);
+    this.scaler = Math.max(Math.min(this.scaler + delta, this.scalerMax), this.scalerMin);
     this.state.scaler = this.scaler;
-
-    const el = this.mapScaler.nativeElement;
-    el.style.height = `${this.scaler}%`;
   }
 
   moveWrapper(left: number | null, top: number | null) {

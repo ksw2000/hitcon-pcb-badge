@@ -59,13 +59,19 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: auto;
+
+}
+
+.map-wrapper-vertical-center {
+    display: flex;
+    align-items: center;
 }
 
 #map-scale-layer {
     position: relative;
-    height: 99%;
     margin: 0 auto;
     width: fit-content;
+    transition: height 200ms ease-out;
 }
 
 #map-scale-layer img {
