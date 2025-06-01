@@ -6,19 +6,23 @@ mat-toolbar {
 }
 
 .mat-toolbar {
-    background-color: darkblue;
-    color: #fff;
-    border-bottom: 3px solid green;
-    /* debug*/
+    background-color: var(--color-background-secondary);
+    color: var(--off-white);
+}
+
+.mat-toolbar span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .mat-toolbar button {
-    color: #fff;
+    color: var(--off-white);
     transition: background-color 300ms;
 }
 
 .mat-toolbar button:hover {
-    background-color: #5a5a5a;
+    background-color: var(--color-interactive-hover-dark);
 }
 
 .spacer {
@@ -27,7 +31,6 @@ mat-toolbar {
 
 main {
     margin: 64px auto 0px;
-    border: 4px solid green;
     box-sizing: border-box;
     padding: 5px;
     height: 100%;
