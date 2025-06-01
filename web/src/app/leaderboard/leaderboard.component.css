@@ -12,21 +12,21 @@
 }
 
 .row.team1 {
-    color: red;
+    color: var(--color-red);
 }
 
 .row.team0 {
-    color: blue;
+    color: var(--color-blue);
 }
 
 .row-head {
-    background-color: #fff !important;
+    background-color: var(--off-white) !important;
     color: #505050;
     font-weight: bold;
 }
 
 .row:nth-child(2n) {
-    background-color: #323232;
+    background-color: #686c8a59;
 }
 
 .row>div:nth-child(1) {
@@ -74,13 +74,13 @@
 }
 
 .bar-team0 {
-    background-color: red;
+    background-color: var(--color-red);
     width: 50%;
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .bar-team1 {
-    background-color: blue;
+    background-color: var(--color-blue);
     width: 50%;
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 5px 5px 0px;
 }
