@@ -57,6 +57,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define IMU_INT1_Pin GPIO_PIN_15
+#define IMU_INT1_GPIO_Port GPIOC
+#define IMU_INT1_EXTI_IRQn EXTI15_10_IRQn
 #define IrRx_Pin GPIO_PIN_0
 #define IrRx_GPIO_Port GPIOA
 #define BtnB_Pin GPIO_PIN_4
@@ -97,17 +100,44 @@ void Error_Handler(void);
 #define UsbDp_GPIO_Port GPIOA
 #define BtnA_Pin GPIO_PIN_15
 #define BtnA_GPIO_Port GPIOA
-#define LedA0_Pin GPIO_PIN_6
+#define LedA0_Pin GPIO_PIN_3
 #define LedA0_GPIO_Port GPIOB
-#define LedA1_Pin GPIO_PIN_7
+#define LedA1_Pin GPIO_PIN_4
 #define LedA1_GPIO_Port GPIOB
+#define DEC_EN_Pin GPIO_PIN_5
+#define DEC_EN_GPIO_Port GPIOB
 #define LedA2_Pin GPIO_PIN_8
 #define LedA2_GPIO_Port GPIOB
 #define LedA3_Pin GPIO_PIN_9
 #define LedA3_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+#ifndef DEC_EN_GPIO_Port
+#define DEC_EN_GPIO_Port GPIOB
+#endif
 
+#ifdef V1_1C
+#undef LedA0_Pin
+#undef LedA1_Pin
+#undef DEC_EN_Pin
+#define LedA0_Pin GPIO_PIN_6
+#define LedA1_Pin GPIO_PIN_7
+#define DEC_EN_Pin GPIO_PIN_5
+#elifdef V2_0A
+#undef LedA0_Pin
+#undef LedA1_Pin
+#undef DEC_EN_Pin
+#define LedA0_Pin GPIO_PIN_3
+#define LedA1_Pin GPIO_PIN_4
+#define DEC_EN_Pin GPIO_PIN_5
+#elifdef V2_1BB
+#undef LedA0_Pin
+#undef LedA1_Pin
+#undef DEC_EN_Pin
+#define LedA0_Pin GPIO_PIN_3
+#define LedA1_Pin GPIO_PIN_5
+#define DEC_EN_Pin GPIO_PIN_4
+#endif
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

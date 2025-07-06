@@ -1,14 +1,17 @@
 #ifndef SERVICE_EC_LOGIC_H_
 #define SERVICE_EC_LOGIC_H_
+#include <Service/EcParams.h>
+#include <Service/HashService.h>
 #include <Service/Sched/Task.h>
 #include <Util/callback.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 namespace hitcon {
 
 namespace ecc {
 
-// hardcoded: server public key, curve params (a, b, n, G, p)
+namespace internal {
 
 class ModNum {
   friend ModNum operator+(const uint64_t a, const ModNum &b);
@@ -23,7 +26,6 @@ class ModNum {
   ModNum operator+(const ModNum &other) const;
   ModNum operator-(const ModNum &other) const;
   ModNum operator*(const ModNum &other) const;
-  ModNum operator/(const ModNum &other) const;
   bool operator==(const ModNum &other) const;
   bool operator==(const uint64_t other) const;
 
@@ -31,57 +33,191 @@ class ModNum {
   uint64_t mod;
 };
 
+/**
+ * Context for performing res = (a / b) mod m.
+ * Algorithm is taken from here:
+ * https://zerobone.net/blog/math/extended-euklidean-algorithm/
+ */
+struct ModDivContext {
+  uint64_t m;
+  uint64_t ppr, pr;
+  uint64_t ppx, px;
+  uint64_t a;
+  uint64_t res;
+};
+
+class ModDivService {
+ public:
+  void start(uint64_t a, uint64_t b, uint64_t m, callback_t callback,
+             void *callbackArg1);
+  ModDivService();
+
+ private:
+  callback_t callback;
+  void *callbackArg1;
+  ModDivContext context;
+  service::sched::Task routineTask;
+  service::sched::Task finalizeTask;
+  void routineFunc();
+  void finalize();
+};
+
+extern ModDivService g_mod_div_service;
+
 struct EllipticCurve {
   EllipticCurve(const uint64_t A, const uint64_t B);
   const uint64_t A, B;
 };
 
 class EcPoint {
+  friend class PointAddService;
+
  public:
   EcPoint();
   EcPoint(const ModNum &x, const ModNum &y);
   EcPoint operator=(const EcPoint &other);
   EcPoint operator-() const;
-  EcPoint operator+(const EcPoint &other) const;
-  EcPoint operator*(uint64_t times) const;
   bool operator==(const EcPoint &other) const;
   /**
    * Getter for the x-coordinate.
    */
   uint64_t xval() const;
+  /**
+   * Whether the point is the identity element.
+   */
+  bool identity() const;
+
+  /**
+   * Convert to compact form (x and the last byte storing 0 or 1 deciding
+   * if it's positive or negative).
+   * Output in little endian, and this can only run on little endian.
+   * len is the size of buffer. Return false if it doesn't fit.
+   */
+  bool getCompactForm(uint8_t *buffer, size_t len) const;
 
  private:
-  ModNum x, y;
   bool isInf;
-  /**
-   * Double the point. Returns (x + x).
-   */
-  EcPoint twice() const;
-  /**
-   * Find the intersection point given the slope.
-   *
-   * @param other the other point
-   * @param l     the slope between `this` and `other`
-   */
-  EcPoint intersect(const EcPoint &other, const ModNum &l) const;
+  ModNum x, y;
 };
+
+/**
+ * Context for res = a + b.
+ * This is done by calculating the slope l between a and b, then intersecting it
+ * with the curve.
+ */
+struct PointAddContext {
+  EcPoint a;
+  EcPoint b;
+  EcPoint res;
+  // Storage for the slope.
+  ModNum l;
+  PointAddContext();
+};
+
+class PointAddService {
+ public:
+  void start(const EcPoint &a, const EcPoint &b, callback_t callback,
+             void *callbackArg1);
+  PointAddService();
+
+ private:
+  callback_t callback;
+  void *callbackArg1;
+  PointAddContext context;
+  service::sched::Task routineTask;
+  service::sched::Task finalizeTask;
+  service::sched::Task genXTask;
+  service::sched::Task genYTask;
+  void routineFunc();
+  void genX();
+  void genY();
+  void onDivDone(ModNum *l);
+  void finalize();
+};
+
+extern PointAddService g_point_add_service;
+
+/**
+ * Context for res = p * times.
+ * We do this similarly to modular exponentiation, where we iterate through 64
+ * bits and do a point addition according to each bit.
+ */
+struct PointMultContext {
+  EcPoint p;
+  uint64_t times;
+  EcPoint res;
+  // The iterator.
+  uint8_t i;
+  PointMultContext();
+};
+
+class PointMultService {
+ public:
+  void start(const EcPoint &p, uint64_t times, callback_t callback,
+             void *callbackArg1);
+  PointMultService();
+
+ private:
+  callback_t callback;
+  void *callbackArg1;
+  PointMultContext context;
+  service::sched::Task routineTask;
+  void routineFunc();
+  void onAddDone(EcPoint *res);
+};
+
+extern PointMultService g_point_mult_service;
+
+struct EcContext {
+  // hash of the message
+  uint64_t z;
+  // a random value
+  uint64_t k;
+  // result of the sign
+  ModNum r, s;
+  EcContext();
+};
+
+}  // namespace internal
 
 struct Signature {
-  EcPoint pub;
+  internal::EcPoint pub;
   uint64_t r, s;
-};
 
-}  // namespace ecc
+  /**
+   * Dump the signature to a buffer. Buffer should be at least
+   * ECC_SIGNATURE_SIZE. This function does not perform any size checks! Caller
+   * is responsible for it.
+   */
+  void toBuffer(uint8_t *buffer) const;
+};
 
 class EcLogic {
  public:
   EcLogic();
 
-  void Init();
+  /**
+   * Set the private key used by this class.
+   *
+   * @param privkey: The private key.
+   *
+   * Note that this will automatically start the computation of public key.
+   */
+  void SetPrivateKey(uint64_t privkey);
+
+  /**
+   * Store the public key into the buffer.
+   *
+   * @param buffer: The buffer, must be ECC_PUBKEY_SIZE bytes in size.
+   *
+   * @return If the key is copied in. False when it's not ready.
+   */
+  bool GetPublicKey(uint8_t *buffer);
 
   /**
    * Start the signing process and mark this API as busy.
-   * @param message: the message to sign
+   * @param message: the message to sign. The contents should be intact until
+   *                 sign finishes.
    * @param len: length of message, has to be a multiple of 8
    * @param callback: callback function to call when the sign is complete.
    *                  the second argument to callback is a pointer to
@@ -94,23 +230,6 @@ class EcLogic {
   bool StartSign(uint8_t const *message, uint32_t len, callback_t callback,
                  void *callbackArg1);
 
-  /**
-   * Start the verification process and mark this API as busy.
-   * @param message: the message to sign
-   * @param len: length of message, has to be a multiple of 8
-   * @param signature: Signature object
-   * @param callback: callback function to call when verification is complete.
-   *                  the second argument to callback is whether the message is
-   *                  valid.
-   * @param callbackArg1: the first argument to the callback. Normally a pointer
-   * to "this" if the callback is a method, and nullptr if the callback is a
-   * function.
-   * @return whether the job is successfully queued.
-   */
-  bool StartVerify(uint8_t const *message, uint32_t len,
-                   const ecc::Signature &signature, callback_t callback,
-                   void *callbackArg1);
-
  private:
   /**
    * Indicates whether a sign / verify operation is running.
@@ -120,6 +239,10 @@ class EcLogic {
    */
   bool busy;
   /**
+   * Temporary storage of the random value used for sig generation.
+   */
+  uint64_t tmpRandValue;
+  /**
    * Temporary storage of signature.
    * For the signing process, the data only lives since the signature completes
    * (at the end of doSign) till the callback returns. For the verification
@@ -127,34 +250,38 @@ class EcLogic {
    * returns.
    */
   ecc::Signature tmpSignature;
-  /**
-   * Temporary storage of the message.
-   * Lives since the public method (StartSign, StartVerify) is called till the
-   * callback returns.
-   */
-  uint8_t const *savedMessage;
-  uint32_t savedMessageLen;
 
   /**
-   * Actual function to perform the sign.
-   * Marks this API as not busy once the function returns.
+   * The private key.
    */
-  void doSign(void *unused);
+  uint64_t privateKey;
 
   /**
-   * Actual function to perform the verification.
-   * Marks this API as not busy once the function returns.
+   * The public key.
    */
-  void doVerify(void *unused);
+  uint8_t publicKey[ECC_PUBKEY_SIZE];
+  uint8_t publicKeyReady;
+
+  hitcon::ecc::internal::EcContext context;
+
+  void genRand();
+  void onHashFinish(hitcon::hash::HashResult *hashResult);
+  void onRGenerated(internal::EcPoint *p);
+  void onSGenerated(internal::ModNum *s);
+  void finalize();
+
+  void onPubkeyDone(internal::EcPoint *p);
 
   callback_t callback;
   void *callback_arg1;
 
-  service::sched::Task signTask;
-  service::sched::Task verifyTask;
+  service::sched::Task genRandTask;
+  service::sched::Task finalizeTask;
 };
 
 extern EcLogic g_ec_logic;
+
+}  // namespace ecc
 
 }  // namespace hitcon
 
