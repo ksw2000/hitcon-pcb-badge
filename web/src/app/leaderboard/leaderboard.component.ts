@@ -1,39 +1,39 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
+import { leaderboard, ScoreService } from '../score.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-leaderboard',
   imports: [DecimalPipe, CommonModule],
   templateUrl: './leaderboard.component.html',
-  styleUrl: './leaderboard.component.css'
+  styleUrl: './leaderboard.component.css',
 })
 export class LeaderboardComponent {
-  team0Score = 2000;
-  team1Score = 8000;
-  items: leaderboard[] = [];
+  teamScore: number[] = [0, 0];
+  items$!: Observable<leaderboard[]>;
+  private scoreService = inject(ScoreService);
   constructor() {
-    for (let i = 0; i < 20; i++) {
-      this.items.push({
-        name: "name name name name",
-        score: (1000 - i) * 10,
-        teamID: Math.floor(Math.random() * 2),
+    effect(() => {
+      this.items$ = this.scoreService.getLeaderBoard();
+      this.items$.subscribe((items) => {
+        items.forEach((item) => {
+          this.teamScore[this.userIDToTeamID(item.uid)]+=item.total_score;
+        });
       });
-    }
+    });
+  }
+
+  // TODO: How to convert user id to team id?
+  userIDToTeamID(id: number): number {
+    return id % 2;
   }
 
   team0Percent(): number {
-    return (this.team0Score / (this.team0Score + this.team1Score)) * 100;
+    return (this.teamScore[0] / (this.teamScore[0] + this.teamScore[1])) * 100;
   }
 
   team1Percent(): number {
-    return (1 - this.team0Score / (this.team0Score + this.team1Score)) * 100;
+    return (1 - this.teamScore[0] / (this.teamScore[0] + this.teamScore[1])) * 100;
   }
 }
-
-interface leaderboard {
-  name: string
-  score: number
-  teamID: number
-}
-
-// TODO: use service to get and keep data

@@ -1,8 +1,8 @@
 <div class="container">
     <h1>Leaderboard</h1>
     <div class="bar-label">
-        <div class="bar-label-team0">{{ team0Score | number }}</div>
-        <div class="bar-label-team1">{{ team1Score | number }}</div>
+        <div class="bar-label-team0">{{ teamScore[0] | number }}</div>
+        <div class="bar-label-team1">{{ teamScore[1] | number }}</div>
     </div>
     <div class="bar">
         <div class="bar-team0" [style.width.%]="team0Percent()"></div>
@@ -13,11 +13,13 @@
         <div>Name</div>
         <div>Score</div>
     </div>
+    @if (items$ | async; as items) {
     @for (item of items; track $index ;let rank = $index) {
-    <div class="row" [ngClass]="{'team0': item.teamID === 0, 'team1': item.teamID === 1}">
+    <div class="row" [ngClass]="{'team0': userIDToTeamID(item.uid) === 0, 'team1': userIDToTeamID(item.uid) === 1}">
         <div>{{rank+1}}</div>
         <div>{{item.name}}</div>
-        <div>{{item.score | number}}</div>
+        <div>{{item.total_score | number}}</div>
     </div>
+    }
     }
 </div>
