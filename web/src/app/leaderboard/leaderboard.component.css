@@ -11,11 +11,11 @@
     align-items: center;
 }
 
-.row.team1 {
+.row.team0 {
     color: var(--color-red);
 }
 
-.row.team0 {
+.row.team1 {
     color: var(--color-blue);
 }
 
@@ -89,6 +89,7 @@
     0% {
         background-color: var(--color-red);
     }
+
     100% {
         background-color: var(--color-red-alternative);
     }
@@ -98,6 +99,7 @@
     0% {
         background-color: var(--color-blue);
     }
+
     100% {
         background-color: var(--color-blue-alternative);
     }
