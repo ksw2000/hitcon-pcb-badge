@@ -10,23 +10,14 @@ import { Observable } from 'rxjs';
   styleUrl: './leaderboard.component.css',
 })
 export class LeaderboardComponent {
-  teamScore: number[] = [0, 0];
+  // TODO: teamScore 顯示紅藍隊目前領先的基地台數
+  teamScore: number[] = [6, 4];
   items$!: Observable<leaderboard[]>;
   private scoreService = inject(ScoreService);
   constructor() {
     effect(() => {
       this.items$ = this.scoreService.getLeaderBoard();
-      this.items$.subscribe((items) => {
-        items.forEach((item) => {
-          this.teamScore[this.userIDToTeamID(item.uid)]+=item.total_score;
-        });
-      });
     });
-  }
-
-  // TODO: How to convert user id to team id?
-  userIDToTeamID(id: number): number {
-    return id % 2;
   }
 
   team0Percent(): number {

@@ -97,22 +97,8 @@
     user-select: none;
 }
 
-.point-box {
-    background-color: var(--float-background);
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    margin: 5px;
-}
-
-.point-box div {
-    height: 10px;
-}
-
 .bar {
     width: 100%;
-    margin: 0px 0px 5px;
     display: flex;
     align-items: center;
 }
@@ -120,27 +106,52 @@
 .team0 {
     background-color: var(--color-red);
     width: 60px;
-    border-radius: 3px;
+    border-radius: 3px 0px 0px 3px;
 }
 
 .team1 {
     background-color: var(--color-blue);
     width: 60px;
-    border-radius: 3px;
+    border-radius: 0px 3px 3px 0px;
 }
 
-.bar .score {
+.score {
+    width: 50px;
+    height: 20px;
+    transform: translate(-25px, -10px);
+    position: absolute;
     font-weight: bold;
     font-size: 1rem;
-    line-height: 1rem;
-    height: auto;
-    padding: 0px 0px 0px 4px;
+    line-height: 20px;
+    color: #e6e6e6;
+    text-align: center;
 }
 
 .score0 {
-    color: var(--color-red);
+    color: var(--color-red) !important;
 }
 
 .score1 {
-    color: var(--color-blue);
+    color: var(--color-blue) !important;
+}
+
+.ring {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transform: translate(-25px, -25px);
+    -webkit-mask:
+        radial-gradient(farthest-side, transparent calc(100% - 5px), black calc(100% - 5px));
+    mask:
+        radial-gradient(farthest-side, transparent calc(100% - 5px), black calc(100% - 5px));
+}
+
+.ring-bg {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transform: translate(-20px, -20px);
+    background-color: #1e1e1e96;
+    border-radius: 50%;
 }

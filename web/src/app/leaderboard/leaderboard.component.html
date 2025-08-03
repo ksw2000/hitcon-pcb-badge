@@ -15,7 +15,7 @@
     </div>
     @if (items$ | async; as items) {
     @for (item of items; track $index ;let rank = $index) {
-    <div class="row" [ngClass]="{'team0': userIDToTeamID(item.uid) === 0, 'team1': userIDToTeamID(item.uid) === 1}">
+    <div class="row">
         <div>{{rank+1}}</div>
         <div>{{item.name}}</div>
         <div>{{item.total_score | number}}</div>

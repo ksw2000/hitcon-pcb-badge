@@ -11,14 +11,6 @@
     align-items: center;
 }
 
-.row.team0 {
-    color: var(--color-red);
-}
-
-.row.team1 {
-    color: var(--color-blue);
-}
-
 .row-head {
     background-color: var(--off-white) !important;
     color: #505050;
