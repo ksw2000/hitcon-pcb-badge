@@ -10,6 +10,7 @@
 #include <App/ShowIdApp.h>
 #include <App/ShowNameApp.h>
 #include <App/SnakeApp.h>
+#include <App/SponsorResp.h>
 #include <App/TamaApp.h>
 #include <App/UsbMenuApp.h>
 #include <Hitcon.h>
@@ -26,7 +27,6 @@
 #include <Logic/IrxbBridge.h>
 #include <Logic/NvStorage.h>
 #include <Logic/SponsorReq.h>
-#include <Logic/SponsorResp.h>
 #include <Logic/UsbLogic.h>
 #include <Logic/XBoardLogic.h>
 #include <Service/ButtonService.h>
