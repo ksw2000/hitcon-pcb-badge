@@ -1029,6 +1029,7 @@ void TamaQte::Entry() {
   state = TamaQteState::kInGame;
   game.Init();
   currentRound = 0;
+  success = 0;
   scheduler.EnablePeriodic(&routineTask);
 }
 
