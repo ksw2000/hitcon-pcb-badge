@@ -22,11 +22,11 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   private update() {
-    this.teamScore = [0, 0, 0];
     this.scoreService.getLeaderBoard().subscribe((scores) => {
       this.items = scores;
     });
     this.stationService.getStationScore().subscribe((scores) => {
+      this.teamScore = [0, 0, 0];
       scores.forEach((score) => {
         if (score > this.threshold) {
           this.teamScore[0]++;
