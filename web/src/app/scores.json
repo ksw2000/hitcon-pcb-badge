@@ -1,0 +1,452 @@
+[
+    {
+        "name": "1c e9 23 21",
+        "player_id": 556001564,
+        "scores": {
+            "shake_badge": 54,
+            "connect_sponsor": 400,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 454,
+        "connected_sponsors": [
+            2,
+            10
+        ]
+    },
+    {
+        "name": "fd 8c c8 91",
+        "player_id": 2445839613,
+        "scores": {
+            "shake_badge": 71,
+            "connect_sponsor": 200,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 271,
+        "connected_sponsors": [
+            3
+        ]
+    },
+    {
+        "name": "86 f4 d9 a3",
+        "player_id": 2748970118,
+        "scores": {
+            "shake_badge": 264,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 264,
+        "connected_sponsors": []
+    },
+    {
+        "name": "9c ea 36 35",
+        "player_id": 892791452,
+        "scores": {
+            "connect_sponsor": 200,
+            "shake_badge": 49,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 249,
+        "connected_sponsors": [
+            11
+        ]
+    },
+    {
+        "name": "32 0d d3 26",
+        "player_id": 651365682,
+        "scores": {
+            "connect_sponsor": 200,
+            "shake_badge": 47,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 247,
+        "connected_sponsors": [
+            10
+        ]
+    },
+    {
+        "name": "4e 61 87 22",
+        "player_id": 579297614,
+        "scores": {
+            "shake_badge": 221,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 221,
+        "connected_sponsors": []
+    },
+    {
+        "name": "fe f6 a3 33",
+        "player_id": 866383614,
+        "scores": {
+            "shake_badge": 212,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 212,
+        "connected_sponsors": []
+    },
+    {
+        "name": "ec 75 aa 9d",
+        "player_id": 2645194220,
+        "scores": {
+            "connect_sponsor": 200,
+            "shake_badge": 0,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 200,
+        "connected_sponsors": [
+            2
+        ]
+    },
+    {
+        "name": "89 fb 5b 08",
+        "player_id": 140245897,
+        "scores": {
+            "connect_sponsor": 200,
+            "shake_badge": 0,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 200,
+        "connected_sponsors": [
+            0
+        ]
+    },
+    {
+        "name": "c6 59 47 b2",
+        "player_id": 2991020486,
+        "scores": {
+            "connect_sponsor": 200,
+            "shake_badge": 0,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "rectf": 0
+        },
+        "total_score": 200,
+        "connected_sponsors": [
+            2
+        ]
+    },
+    {
+        "name": "6d 16 a7 62",
+        "player_id": 1655117421,
+        "scores": {
+            "shake_badge": 122,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 122,
+        "connected_sponsors": []
+    },
+    {
+        "name": "2c ff 44 3a",
+        "player_id": 977600300,
+        "scores": {
+            "shake_badge": 121,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 121,
+        "connected_sponsors": []
+    },
+    {
+        "name": "11 64 a7 a4",
+        "player_id": 2762433553,
+        "scores": {
+            "shake_badge": 114,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 114,
+        "connected_sponsors": []
+    },
+    {
+        "name": "e1 e0 ab 7c",
+        "player_id": 2091639009,
+        "scores": {
+            "shake_badge": 110,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 110,
+        "connected_sponsors": []
+    },
+    {
+        "name": "81 af 84 6a",
+        "player_id": 1787080577,
+        "scores": {
+            "shake_badge": 104,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 104,
+        "connected_sponsors": []
+    },
+    {
+        "name": "0b 53 29 97",
+        "player_id": 2536067851,
+        "scores": {
+            "shake_badge": 84,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 84,
+        "connected_sponsors": []
+    },
+    {
+        "name": "94 03 c5 62",
+        "player_id": 1657078676,
+        "scores": {
+            "shake_badge": 52,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 52,
+        "connected_sponsors": []
+    },
+    {
+        "name": "f4 0f 61 86",
+        "player_id": 2254508020,
+        "scores": {
+            "shake_badge": 52,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 52,
+        "connected_sponsors": []
+    },
+    {
+        "name": "1d dd 7e 0a",
+        "player_id": 176086301,
+        "scores": {
+            "shake_badge": 46,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 46,
+        "connected_sponsors": []
+    },
+    {
+        "name": "e3 ec 11 80",
+        "player_id": 2148658403,
+        "scores": {
+            "shake_badge": 42,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 42,
+        "connected_sponsors": []
+    },
+    {
+        "name": "f5 2d 0f a1",
+        "player_id": 2702126581,
+        "scores": {
+            "shake_badge": 42,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 42,
+        "connected_sponsors": []
+    },
+    {
+        "name": "41 ab df 0c",
+        "player_id": 215984961,
+        "scores": {
+            "shake_badge": 27,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 27,
+        "connected_sponsors": []
+    },
+    {
+        "name": "ac 2b ea 2f",
+        "player_id": 803875756,
+        "scores": {
+            "shake_badge": 18,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 18,
+        "connected_sponsors": []
+    },
+    {
+        "name": "d8 8e c5 94",
+        "player_id": 2495975128,
+        "scores": {
+            "shake_badge": 18,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 18,
+        "connected_sponsors": []
+    },
+    {
+        "name": "6e 59 96 76",
+        "player_id": 1989564782,
+        "scores": {
+            "shake_badge": 15,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 15,
+        "connected_sponsors": []
+    },
+    {
+        "name": "3e 99 5b 00",
+        "player_id": 6003006,
+        "scores": {
+            "shake_badge": 12,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 12,
+        "connected_sponsors": []
+    },
+    {
+        "name": "28 e2 18 31",
+        "player_id": 823714344,
+        "scores": {
+            "shake_badge": 9,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 9,
+        "connected_sponsors": []
+    },
+    {
+        "name": "44 2c ba 65",
+        "player_id": 1706699844,
+        "scores": {
+            "shake_badge": 9,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 9,
+        "connected_sponsors": []
+    },
+    {
+        "name": "ad b6 10 a6",
+        "player_id": 2786113197,
+        "scores": {
+            "shake_badge": 9,
+            "dino": 0,
+            "snake": 0,
+            "tetris": 0,
+            "tama": 0,
+            "connect_sponsor": 0,
+            "rectf": 0
+        },
+        "total_score": 9,
+        "connected_sponsors": []
+    }
+]

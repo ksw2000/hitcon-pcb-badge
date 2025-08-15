@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, timeout } from 'rxjs';
-import { env } from '../config';
+import { Observable, of } from 'rxjs';
+// import { env } from '../config';
+import score_from_json from './scores.json';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,17 @@ import { env } from '../config';
 export class ScoreService {
   private http = inject(HttpClient);
   getLeaderBoard(): Observable<leaderboard[]> {
-    return this.http.get<leaderboard[]>(env.api.getScores).pipe(timeout(env.api.timeout), map((scores) => {
-      scores = scores.sort((a, b) => {
-        return b.total_score - a.total_score;
-      });
-      console.log(scores);
-      return scores;
-    }), catchError((error) => {
-      console.error('fetching error', error);
-      return of([]);
-    }));
+    return of(score_from_json);
+    // return this.http.get<leaderboard[]>(env.api.getScores).pipe(timeout(env.api.timeout), map((scores) => {
+    //   scores = scores.sort((a, b) => {
+    //     return b.total_score - a.total_score;
+    //   });
+    //   console.log(scores);
+    //   return scores;
+    // }), catchError((error) => {
+    //   console.error('fetching error', error);
+    //   return of([]);
+    // }));
   }
 }
 
