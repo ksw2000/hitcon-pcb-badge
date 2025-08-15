@@ -16,6 +16,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
 
   readonly scalerMax = 299;
   readonly scalerMin = 79;
+  readonly threshold = env.score.threshold;
   floor = 0;
   scaler = 99;
   readonly floorImg: string[] = ['./3f.svg', './4f.svg', './hitcon-hat-logo.svg'];

@@ -8,7 +8,8 @@
         </div>
         <div class="ring-bg" [style.top.%]="point.x" [style.left.%]="point.y"></div>
         <div class="score" [style.top.%]="point.x" [style.left.%]="point.y"
-            [ngClass]="{'score0': point.score > 0, 'score1': point.score < 0}">{{point.score |abs}}</div>
+            [ngClass]="{'score0': point.score > threshold, 'score1': point.score < -threshold}">{{ point.score | abs }}
+        </div>
         }
     </div>
 </div>
