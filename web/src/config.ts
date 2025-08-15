@@ -9,7 +9,8 @@ export const env = {
         maxStationID: 21,
     },
     score: {
-        threshold: 100,
+        maximum: 30000,
+        threshold: 500,
         sponsorIDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
         sponsorNames: ["DEVCORE", "Rakuten", "KlickKlack", "國家資通安全研究院", "Deloitte", "TWNIC", "CHT Security", "104人力銀行", "ISIP", "ASUS", "Findy", "CyCraft"],
     },

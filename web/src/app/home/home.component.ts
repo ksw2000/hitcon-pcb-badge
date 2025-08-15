@@ -237,13 +237,13 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   // convert score to width on UI
-  // lowest score: -1000
-  // highest score: 1000
+  // lowest score: -30000
+  // highest score: 30000
   // when the score is positive red > blue
   // when the score is negative blue > red
   // scoreToRingRadius represents the blue team's score
   scoreToRingRadius(score: number): number {
-    return (1000 - score) / 2000 * 360;
+    return (env.score.maximum - score) / (env.score.maximum * 2) * 360;
   }
 }
 

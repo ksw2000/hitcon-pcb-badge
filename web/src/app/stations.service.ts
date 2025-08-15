@@ -21,7 +21,7 @@ export class StationsService {
         console.error('fetching error', error);
         const ret: number[] = [];
         for (let i = 0; i < env.station.maxStationID + 1; i++) {
-          ret.push(0); //Math.floor(Math.random() * 2000 - 1000));
+          ret.push(0);
         }
         return of(ret);
       }));
