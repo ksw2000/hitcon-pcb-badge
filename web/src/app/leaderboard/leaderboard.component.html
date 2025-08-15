@@ -13,7 +13,7 @@
         <div class="leaderboard-response-wrapper">
             <div class="row-head row">
                 <div>Rank</div>
-                <div>User ID</div>
+                <div>Name</div>
                 <div>Score</div>
                 @for (id of sponsorIDs; track $index) {
                 <div class="sponsor-column sponsor-column-header">{{ id }}<span class="tooltip">{{ sponsorNames[id]
@@ -23,7 +23,7 @@
             @for (item of items; track $index ;let rank = $index) {
             <div class="row">
                 <div>{{rank+1}}</div>
-                <div>{{item.player_id | littleEndian}}</div>
+                <div>{{item.name}}</div>
                 <div>{{item.total_score | number}}</div>
                 @for (id of sponsorIDs; track $index) {
                 <div class="sponsor-column" [ngClass]="{'sponsor-column-header': item.connected_sponsors.includes(id)}">
