@@ -1,16 +1,16 @@
 <div class="container">
     <h1>Leaderboard</h1>
+    <div class="bar-label">
+        <div class="bar-label-team0">{{ teamScore[0] | number }}</div>
+        <div class="bar-label-team1">{{ teamScore[1] | number }}</div>
+    </div>
+    <div class="bar">
+        <div class="bar-team0" [style.width.%]="team0Percent()"></div>
+        <div class="bar-team-tie" [style.width.%]="teamTiePercent()"></div>
+        <div class="bar-team1" [style.width.%]="team1Percent()"></div>
+    </div>
     <div class="leaderboard-response-wrapper-scroll">
         <div class="leaderboard-response-wrapper">
-            <div class="bar-label">
-                <div class="bar-label-team0">{{ teamScore[0] | number }}</div>
-                <div class="bar-label-team1">{{ teamScore[1] | number }}</div>
-            </div>
-            <div class="bar">
-                <div class="bar-team0" [style.width.%]="team0Percent()"></div>
-                <div class="bar-team-tie" [style.width.%]="teamTiePercent()"></div>
-                <div class="bar-team1" [style.width.%]="team1Percent()"></div>
-            </div>
             <div class="row-head row">
                 <div>Rank</div>
                 <div>User ID</div>
