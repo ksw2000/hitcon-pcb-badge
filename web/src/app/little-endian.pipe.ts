@@ -12,6 +12,9 @@ export class LittleEndianPipe implements PipeTransform {
       tokens.push(token.toString(16).padStart(2, "0"));
       value = value >> 8;
     }
+    while(tokens.length < 4) {
+      tokens.push("00");
+    }
     return tokens.join(" ");
   }
 }
