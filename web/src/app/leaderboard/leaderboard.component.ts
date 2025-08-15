@@ -26,6 +26,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
       this.items = scores;
     });
     this.stationService.getStationScore().subscribe((scores) => {
+      this.teamScore = [0, 0, 0];
       scores.forEach((score) => {
         if (score > this.threshold) {
           this.teamScore[0]++;
