@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { StateService } from '../state.service';
 import { AbsPipe } from '../abs.pipe';
 import { StationsService } from '../stations.service';
-import { map, of } from 'rxjs';
 import { env } from '../../config';
 
 @Component({
@@ -57,7 +56,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     },
     {
       x: 68,  // 第二會議議右下
-      y: 29,
+      y: 33.5,
       score: 0,
       id: 9,
     },
@@ -75,7 +74,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     },
     {
       x: 67, // 第一會議議左下
-      y: 72.5,
+      y: 65.8,
       score: 0,
       id: 6,
     },
@@ -178,10 +177,10 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     }
   ];
 
-  points$ = [
-    of(this.points0),
-    of(this.points1),
-    of(this.points2),
+  points = [
+    this.points0,
+    this.points1,
+    this.points2,
   ];
 
   ngAfterViewInit(): void {
@@ -199,15 +198,9 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       this.points2.forEach((point, index) => {
         this.points2[index].score = fetched[point.id];
       });
-      this.points$[0].pipe(map(() => {
-        return this.points0;
-      }));
-      this.points$[1].pipe(map(() => {
-        return this.points1;
-      }));
-      this.points$[2].pipe(map(() => {
-        return this.points1;
-      }));
+      this.points[0] = this.points0;
+      this.points[1] = this.points1;
+      this.points[2] = this.points2;
       console.log(fetched);
     });
   }

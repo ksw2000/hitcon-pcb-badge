@@ -16,20 +16,21 @@
                 <div>User ID</div>
                 <div>Score</div>
                 @for (id of sponsorIDs; track $index) {
-                <div class="sponsor-column sponsor-column-header">{{ id }}<span class="tooltip">{{ sponsorNames[id] }}</span></div>
+                <div class="sponsor-column sponsor-column-header">{{ id }}<span class="tooltip">{{ sponsorNames[id]
+                        }}</span></div>
                 }
             </div>
-            @if (items$ | async; as items) {
             @for (item of items; track $index ;let rank = $index) {
             <div class="row">
                 <div>{{rank+1}}</div>
                 <div>{{item.player_id | littleEndian}}</div>
                 <div>{{item.total_score | number}}</div>
                 @for (id of sponsorIDs; track $index) {
-                <div class="sponsor-column">{{ item.connected_sponsors.includes(id) ? "1" : "0" }}</div>
+                <div class="sponsor-column">
+                    <div [ngClass]="{'sponsor-column-fill': item.connected_sponsors.includes(id)}"></div>
+                </div>
                 }
             </div>
-            }
             }
         </div>
     </div>
