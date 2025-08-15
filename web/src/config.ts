@@ -10,7 +10,7 @@ export const env = {
     },
     score: {
         threshold: 100,
-        sponsorIDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        sponsorNames: ["sponsor0", "sponsor1", "sponsor2", "sponsor3", "sponsor4", "sponsor5", "sponsor6", "sponsor7", "sponsor8", "sponsor9", "sponsor10", "sponsor11", "sponsor12"],
+        sponsorIDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        sponsorNames: ["DEVCORE", "Rakuten", "KlickKlack", "國家資通安全研究院", "Deloitte", "TWNIC", "CHT Security", "104人力銀行", "ISIP", "ASUS", "Findy", "CyCraft"],
     },
 };
