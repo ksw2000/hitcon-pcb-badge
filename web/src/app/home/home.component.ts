@@ -1,7 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StateService } from '../state.service';
 import { AbsPipe } from '../abs.pipe';
+import { StationsService } from '../stations.service';
+import { map, of } from 'rxjs';
+import { env } from '../../config';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,7 @@ import { AbsPipe } from '../abs.pipe';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('mapWrapper') mapWrapper?: ElementRef;
 
   readonly scalerMax = 299;
@@ -18,52 +21,81 @@ export class HomeComponent implements AfterViewInit, OnInit {
   scaler = 99;
   readonly floorImg: string[] = ['./3f.svg', './4f.svg', './hitcon-hat-logo.svg'];
 
-  // TODO: the data of points should be fetched from server periodically
+  constructor(private state: StateService, private stationService: StationsService) {
+    this.floor = this.state.floor;
+    this.scaler = this.state.scaler;
+    this.updateScore();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private intervalID?: any;
+
+  ngOnInit(): void {
+    this.intervalID = setInterval(() => {
+      this.updateScore();
+    }, env.api.period);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalID) {
+      clearInterval(this.intervalID);
+    }
+  }
+
   points0: point[] = [
     {
       x: 40, // 第二會議議右上
       y: 31.5,
-      score: 0
+      score: 0,
+      id: 10,
     },
     {
       x: 43,  // 第二會議室最左
       y: 20.5,
-      score: 1000
+      score: 0,
+      id: 11,
     },
     {
       x: 68,  // 第二會議議右下
       y: 29,
-      score: -60
+      score: 0,
+      id: 9,
     },
     {
       x: 40, // 第一會議議左上
       y: 67.5,
-      score: 50
+      score: 0,
+      id: 8,
     },
     {
       x: 58, // 第一會議議最右
       y: 80.5,
-      score: -100
+      score: 0,
+      id: 7,
     },
     {
       x: 67, // 第一會議議左下
       y: 72.5,
-      score: 120
+      score: 0,
+      id: 6,
     },
     {
       x: 16, // 遠距會議室左上
       y: 63.8,
-      score: 70
+      score: 0,
+      id: 13,
     },
     {
       x: 27, // 遠距會議室右下
       y: 73,
-      score: -66
+      score: 0,
+      id: 12,
     },
     {
       x: 84,  // 地圖中下
       y: 50,
-      score: 100
+      score: 0,
+      id: 1
     }
   ];
 
@@ -71,57 +103,68 @@ export class HomeComponent implements AfterViewInit, OnInit {
     {
       x: 90,  // 大會攤位左邊
       y: 32,
-      score: 600
+      score: 0,
+      id: 15,
     },
     {
       x: 90,  // 大會攤位右邊
       y: 66,
-      score: -450
+      score: 0,
+      id: 16,
     },
     {
       x: 73,  // 國際會議廳左下
-      y: 36,
-      score: 500
+      y: 39,
+      score: 0,
+      id: 2,
     },
     {
       x: 73,  // 國際會議廳右下
-      y: 63,
-      score: 300
+      y: 61,
+      score: 0,
+      id: 3,
     },
     {
       x: 49,  // 國際會議廳左上
-      y: 40,
-      score: -300
+      y: 43,
+      score: 0,
+      id: 5,
     },
     {
       x: 49,  // 國際會議廳右上
-      y: 59,
-      score: 300
+      y: 57,
+      score: 0,
+      id: 4,
     },
     {
       x: 65,  // 南棟下面
-      y: 25,
-      score: -800
+      y: 33.5,
+      score: 0,
+      id: 20,
     },
     {
       x: 35,  // 南棟上面
-      y: 29.5,
-      score: -170
+      y: 38,
+      score: 0,
+      id: 19,
     },
     {
       x: 65,  // 北棟下面
-      y: 74.5,
-      score: 180
+      y: 65.8,
+      score: 0,
+      id: 17,
     },
     {
       x: 35,  // 北棟上面
-      y: 69.5,
-      score: -700
+      y: 61.2,
+      score: 0,
+      id: 18,
     },
     {
-      x: 17,  // 交誼廳
-      y: 59,
-      score: 700
+      x: 16,  // 交誼廳
+      y: 55,
+      score: 0,
+      id: 14,
     }
   ];
 
@@ -130,21 +173,43 @@ export class HomeComponent implements AfterViewInit, OnInit {
     {
       x: 50,  // 中間點
       y: 50,
-      score: 0
+      score: 0,
+      id: 21,
     }
   ];
 
-  points = [this.points0, this.points1, this.points2];
-
-  constructor(public state: StateService) { }
+  points$ = [
+    of(this.points0),
+    of(this.points1),
+    of(this.points2),
+  ];
 
   ngAfterViewInit(): void {
     this.moveWrapper(this.state.scrollLeft, this.state.scrollTop);
   }
 
-  ngOnInit() {
-    this.floor = this.state.floor;
-    this.scaler = this.state.scaler;
+  private updateScore() {
+    this.stationService.getStationScore().subscribe((fetched: number[]) => {
+      this.points0.forEach((point, index) => {
+        this.points0[index].score = fetched[point.id];
+      });
+      this.points1.forEach((point, index) => {
+        this.points1[index].score = fetched[point.id];
+      });
+      this.points2.forEach((point, index) => {
+        this.points2[index].score = fetched[point.id];
+      });
+      this.points$[0].pipe(map(() => {
+        return this.points0;
+      }));
+      this.points$[1].pipe(map(() => {
+        return this.points1;
+      }));
+      this.points$[2].pipe(map(() => {
+        return this.points1;
+      }));
+      console.log(fetched);
+    });
   }
 
   changeFloor(floor: number) {
@@ -194,4 +259,5 @@ interface point {
   score: number // for each team score
   x: number // x-axis of position
   y: number // y-axis of position
+  id: number
 }
