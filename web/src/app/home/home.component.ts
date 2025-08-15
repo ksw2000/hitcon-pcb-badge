@@ -127,7 +127,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       x: 49,  // 國際會議廳左上
       y: 43,
       score: 0,
-      id: 5,
+      id: 14,
     },
     {
       x: 49,  // 國際會議廳右上
@@ -151,19 +151,19 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       x: 65,  // 北棟下面
       y: 65.8,
       score: 0,
-      id: 17,
+      id: 18,
     },
     {
       x: 35,  // 北棟上面
       y: 61.2,
       score: 0,
-      id: 18,
+      id: 17,
     },
     {
       x: 16,  // 交誼廳
       y: 55,
       score: 0,
-      id: 14,
+      id: 5,
     }
   ];
 
