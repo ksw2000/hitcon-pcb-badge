@@ -26,8 +26,9 @@
                 <div>{{item.player_id | littleEndian}}</div>
                 <div>{{item.total_score | number}}</div>
                 @for (id of sponsorIDs; track $index) {
-                <div class="sponsor-column">
+                <div class="sponsor-column" [ngClass]="{'sponsor-column-header': item.connected_sponsors.includes(id)}">
                     <div [ngClass]="{'sponsor-column-fill': item.connected_sponsors.includes(id)}"></div>
+                    <span class="tooltip" *ngIf="item.connected_sponsors.includes(id)">{{ sponsorNames[id] }}</span>
                 </div>
                 }
             </div>
