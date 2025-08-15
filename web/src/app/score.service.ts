@@ -10,9 +10,11 @@ export class ScoreService {
   private http = inject(HttpClient);
   getLeaderBoard(): Observable<leaderboard[]> {
     return this.http.get<leaderboard[]>(env.api.getScores).pipe(timeout(env.api.timeout), map((scores) => {
-      return scores.sort((a, b) => {
+      scores = scores.sort((a, b) => {
         return b.total_score - a.total_score;
       });
+      console.log(scores);
+      return scores;
     }), catchError((error) => {
       console.error('fetching error', error);
       return of([]);

@@ -201,7 +201,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       this.points[0] = this.points0;
       this.points[1] = this.points1;
       this.points[2] = this.points2;
-      console.log(fetched);
     });
   }
 
